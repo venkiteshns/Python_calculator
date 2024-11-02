@@ -1,7 +1,6 @@
 from tkinter import *
 
-
-# function Creation Starts
+# function Creation
 
 def button_press(num):
     global equation_text
@@ -11,8 +10,10 @@ def button_press(num):
     equation_label.set(equation_text)
 
 
+
 def equals():
     global equation_text
+
 
     try:
         total = str(eval(equation_text))
@@ -133,6 +134,70 @@ class RoundedButton:
 
 # Window Creation
 
+def equals():
+    global equation_text
+
+    try:
+        total = str(eval(equation_text))
+
+        equation_label.set(total)
+
+        equation_text = total
+
+    except ZeroDivisionError:
+
+        equation_label.set("Can't Divide By Zero")
+
+        equation_text = ""
+
+    except SyntaxError:
+
+        equation_label.set("Invalid Action")
+
+        equation_text = ""
+
+
+def clear():
+    global equation_text
+
+    equation_text = ""
+
+    equation_label.set("")
+
+
+def delete():
+    global equation_text
+
+    current_text = equation_label.get()
+
+    equation_label.set(current_text[:-1])
+
+    equation_text = current_text[:-1]
+
+
+def plusOMinus():
+    global equation_text
+
+    current_value = (eval(equation_text)) * -1
+
+    equation_label.set(str(current_value))
+
+    equation_text = str(current_value)
+
+
+def percentage():
+    global equation_text
+
+    current_value = (eval(equation_text)) / 100
+
+    equation_label.set(str(current_value))
+
+    equation_text = str(current_value)
+
+
+# End of Functions
+
+# Window Creation
 window = Tk()
 window.title("Calculator")
 window.geometry("300x380")
@@ -226,5 +291,6 @@ button_equals = RoundedButton(frame, text="=", command=equals)
 button_equals.canvas.grid(row=4, column=3,padx=3, pady=3)
 
 # Buttons Creation Ends
+
 
 window.mainloop()
