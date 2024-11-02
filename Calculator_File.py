@@ -1,7 +1,7 @@
 from tkinter import *
 
 
-# function Creation
+# function Creation Starts
 
 def button_press(num):
     global equation_text
